@@ -1,0 +1,18 @@
+<style lang="scss">
+</style>
+<template>
+    <swiperBar></swiperBar>
+</template>
+<script>
+    import wepy from 'wepy'
+    import swiperBar from '../components/swiper_banner'
+    export default class home extends wepy.page {
+      // 页面配置
+      config = {
+        'navigationBarTitleText': '首页'
+      };
+      components = {
+        swiperBar: swiperBar
+      };
+    }
+</script>
