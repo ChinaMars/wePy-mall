@@ -20,15 +20,15 @@
 <template>
     <view class="container">
         <weSwiper :option="swiper">
-            <view class="we-slide">slide 1</view>
-            <view class="we-slide">slide 2</view>
-            <view class="we-slide">slide 3</view>
+            <view class="we-slide"></view>
         </weSwiper>
     </view>
 </template>
 <script>
     import wepy from 'wepy'
     import weSwiper from 'wepy-com-swiper'
+    import api from '../api/api'
+
     export default class swiperBar extends wepy.component {
       components = {
         weSwiper: weSwiper
@@ -36,7 +36,7 @@
       data = {
         swiper: {
           direction: 'horizontal',
-          slideLength: 3,
+          slideLength: 1,
           /**
            * swiper初始化后执行
            * @param swiper
@@ -49,9 +49,7 @@
            * @param swiper
            * @param event
            */
-          onTouchStart (weswiper, event) {
-
-          },
+          onTouchStart (weswiper, event) {},
           /**
            * 手指碰触slide并且滑动时执行
            * @param swiper
@@ -124,8 +122,14 @@
           }
         }
       };
+      async getAdList() {
+        await api.getAdList()
+        console.log('2')
+      }
       onLoad() {
-        setTimeout(() => this.$invoke('weSwiper', 'slideTo', 2), 3000)
+        let that = this
+        that.getAdList()
+        // setTimeout(() => this.$invoke('weSwiper', 'slideTo', 2), 100)
       };
       methods = {};
       events = {};
