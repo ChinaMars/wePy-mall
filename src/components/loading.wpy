@@ -1,0 +1,14 @@
+<template>
+    <view wx:if="{{!isLoading}}">loading</view>
+</template>
+<script>
+    import wepy from 'wepy'
+    export default class Loading extends wepy.component {
+      props = {
+        isLoading: {}
+      }
+    }
+</script>
+<style lang="scss">
+
+</style>

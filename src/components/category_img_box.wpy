@@ -1,0 +1,12 @@
+<template>
+    <view>category product</view>
+</template>
+<script>
+    import wepy from 'wepy'
+    export default class CategoryImgBox extends wepy.component {
+      props = {}
+    }
+</script>
+<style lang="scss">
+
+</style>

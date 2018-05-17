@@ -1,18 +1,54 @@
 <style lang="scss">
+
 </style>
 <template>
-    <swiperBar></swiperBar>
+    <Loading :isLoading.sync="isLoading"/>
+    <view class="container" wx:if="{{isLoading}}">
+        <!--轮播图-->
+        <SwiperBar :adlist.sync="adlist"/>
+        <!--商品系列-->
+        <CategoryImgBox />
+    </view>
 </template>
 <script>
     import wepy from 'wepy'
-    import swiperBar from '../components/swiper_banner'
-    export default class home extends wepy.page {
+    import Base from '../mixins/base'
+    import Loading from '../components/loading'
+    import SwiperBar from '../components/swiper'
+    import CategoryImgBox from '../components/category_img_box'
+    import api from '../api/api'
+    export default class Home extends wepy.page {
       // 页面配置
       config = {
         'navigationBarTitleText': '首页'
       };
+      // 引入模块
       components = {
-        swiperBar: swiperBar
+        Loading: Loading,
+        SwiperBar: SwiperBar,
+        CategoryImgBox: CategoryImgBox
       };
+      mixins = [Base];
+      // 初始数据
+      data = {
+        isLoading: false,
+        adlist: []
+      };
+      async getAdList() {
+        let res = await api.getAdList()
+        if (res.data.code === 0) {
+          this.adlist = res.data.data
+          this.$apply()
+        }
+      };
+      async getCategory() {
+        let res = await api.getCategory()
+        console.log(res)
+      }
+      async onLoad () {
+        await this.getAdList()
+        await this.getCategory()
+        this.loaded()
+      }
     }
 </script>
