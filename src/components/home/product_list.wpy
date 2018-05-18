@@ -1,0 +1,7 @@
+<template>
+    <view>product list</view>
+</template>
+<script>
+    import wepy from 'wepy'
+    export default class ProList extends wepy.compontent {}
+</script>

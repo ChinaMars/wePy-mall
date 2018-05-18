@@ -6,8 +6,8 @@
     <view class="container" wx:if="{{isLoading}}">
         <!--轮播图-->
         <SwiperBar :adlist.sync="adlist"/>
-        <!--商品系列-->
-        <CategoryImgBox />
+        <!--商品分类-->
+        <CategoryImgBox :categoryList.sync="categoryList" :proList.sync="proList"/>
     </view>
 </template>
 <script>
@@ -32,22 +32,34 @@
       // 初始数据
       data = {
         isLoading: false,
-        adlist: []
+        adlist: [],
+        categoryList: [],
+        proList: []
       };
       async getAdList() {
         let res = await api.getAdList()
-        if (res.data.code === 0) {
-          this.adlist = res.data.data
-          this.$apply()
+        if (res.code === 0) {
+          this.adlist = res.data
         }
       };
       async getCategory() {
         let res = await api.getCategory()
-        console.log(res)
+        if (res.code === 0) {
+          this.categoryList = res.data
+          console.log(this.categoryList)
+        }
+      }
+      async getProList() {
+        let res = await api.getProList()
+        if (res.code === 0) {
+          this.proList = res.data
+          console.log(this.proList)
+        }
       }
       async onLoad () {
         await this.getAdList()
         await this.getCategory()
+        await this.getProList()
         this.loaded()
       }
     }

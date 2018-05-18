@@ -1,8 +1,8 @@
 <template>
-    <swiper indicator-dots="true" autoplay="true" interval="3000" style="height:{{height}}">
+    <swiper indicator-dots="true" indicator-color="rgba(255, 255, 255, .7)" indicator-active-color="#FFFFFF" autoplay="true" interval="3000" style="height:{{height}}">
         <block wx:for="{{adlist}}" wx:key="index">
             <swiper-item>
-                <image src="{{item.picUrl}}" class="slide-image" height="435"/>
+                <image src="{{item.picUrl}}" class="slide-image"/>
             </swiper-item>
         </block>
     </swiper>
@@ -17,7 +17,7 @@
         }
       }
       data = {
-        height: '435rpx'
+        height: '540rpx'
       }
       methods = {}
     }
@@ -25,5 +25,6 @@
 <style lang="scss">
     .slide-image{
         width: 100%;
+        height: 100%;
     }
 </style>

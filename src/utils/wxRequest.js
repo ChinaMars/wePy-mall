@@ -8,6 +8,6 @@ export default class wxRequest {
       header: { 'Content-Type': 'application/json' }
     }
     let res = await wepy.request(obj)
-    return res
+    return res.data
   }
 }
