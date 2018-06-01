@@ -1,0 +1,72 @@
+<template>
+  <Loading :isLoading.sync="isLoading" />
+  <view class="container" wx:if="{{isLoading}}">
+    <!--轮播图-->
+    <SwiperBar :adlist.sync="adlist" />
+    <!--商品分类-->
+    <CategoryBox :categoryList.sync="categoryList" />
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Base from '../../mixins/base'
+  import Loading from '../../components/common/loading'
+  import SwiperBar from '../../components/template/swiper'
+  import CategoryBox from '../../components/home/category_box'
+  import api from '../../api/api'
+  export default class Home extends wepy.page {
+    // 页面配置
+    config = {
+      'navigationBarTitleText': '首页'
+    };
+    // 引入模块
+    components = {
+      Loading: Loading,
+      SwiperBar: SwiperBar,
+      CategoryBox: CategoryBox
+    };
+    mixins = [Base];
+    // 初始数据
+    data = {
+      isLoading: false,
+      adlist: [],
+      categoryList: [],
+      proList: []
+    };
+    async getAdList() {
+      let res = await api.getAdList()
+      if (res.code === 0) {
+        this.adlist = res.data
+      }
+    };
+    async getHomeCategoryList() {
+      let res = await api.getHomeCategoryList()
+      if (res.code === 0) {
+        this.categoryList = res.data
+      }
+    }
+    async getCategory() {
+      let res = await api.getCategory()
+      if (res.code === 0) {
+        this.categoryList = res.data
+      }
+    }
+    async getProList() {
+      let res = await api.getProList()
+      if (res.code === 0) {
+        this.proList = res.data
+      }
+    }
+    async onLoad() {
+      await this.getAdList()
+      await this.getHomeCategoryList()
+      // await this.getCategory()
+      // await this.getProList()
+      this.loaded()
+    }
+  }
+</script>
+<style lang="scss">
+
+</style>

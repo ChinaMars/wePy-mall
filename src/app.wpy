@@ -15,8 +15,9 @@ setStore(store)
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/home',
-      'pages/index'
+      // 'pages/index',
+      'pages/home/index',
+      'pages/product/view'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -32,17 +33,17 @@ export default class extends wepy.app {
       'list': [{
         'iconPath': 'images/tabbar/home.png',
         'selectedIconPath': 'images/tabbar/home-active.png',
-        'pagePath': 'pages/home',
+        'pagePath': 'pages/home/index',
         'text': '首页'
       }, {
         'iconPath': 'images/tabbar/money.png',
         'selectedIconPath': 'images/tabbar/money-active.png',
-        'pagePath': 'pages/home',
+        'pagePath': 'pages/home/index',
         'text': '中奖列表'
       }, {
         'iconPath': 'images/tabbar/account.png',
         'selectedIconPath': 'images/tabbar/account-active.png',
-        'pagePath': 'pages/home',
+        'pagePath': 'pages/home/index',
         'text': '我的'
       }]
     }

@@ -1,0 +1,59 @@
+<template>
+    <view class="category-box">
+        <repeat for="{{categoryList}}" key="index" index="index" item="item">
+            <view class="row">
+                <view class="img-box"><image src="{{item.icon}}"/></view>
+                <view class="product-list">
+                    <repeat for="{{item.productList}}" key="index" index="index" item="item">
+                        <view class="product">
+                            <view class="pro-img"><image src="{{item.pic}}"/></view>
+                            <view class="pro-info">
+                                <view class="pro-name">{{item.name}}</view>
+                                <view class="pro-sku">{{item.barCode}}</view>
+                                <view class="pro-price">
+                                    <text class="new-price">{{item.minPrice}}</text>
+                                    <text class="old-price">{{item.originalPrice}}</text>
+                                </view>
+                            </view>
+                            <view class="btn">立即购买</view>
+                        </view>
+                    </repeat>
+                </view>
+            </view>
+        </repeat>
+    </view>
+</template>
+<script>
+    import wepy from 'wepy'
+    export default class CategoryBox extends wepy.component {
+      props = {
+        categoryList: {
+          type: Object,
+          default: []
+        }
+      }
+    }
+</script>
+<style lang="scss">
+    .category-box{
+        .img-box{
+            image{
+                width: 100%;
+                height: 540rpx;
+            }
+        }
+        .product-list{
+            display: flex;
+            .product{
+                width: 50%;
+                text-align: center;
+                .pro-img{
+                    image{
+                        width: 265rpx;
+                        height: 265rpx;
+                    }
+                }
+            }
+        }
+    }
+</style>
