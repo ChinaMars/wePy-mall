@@ -1,7 +1,7 @@
 import wepy from 'wepy'
 export default class wxRequest {
   static async request (url, method, params = {}) {
-    let data = params.query || {}
+    let data = params.query
     let obj = {
       url: url,
       method: method,

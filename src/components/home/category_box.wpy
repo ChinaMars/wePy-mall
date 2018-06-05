@@ -6,7 +6,7 @@
                 <view class="product-list">
                     <repeat for="{{item.productList}}" key="index" index="index" item="item">
                         <view class="product">
-                            <view class="pro-img"><image src="{{item.pic}}"/></view>
+                            <view class="pro-img" @tap="routeToGoods({{item.id}})"><image src="{{item.pic}}"/></view>
                             <view class="pro-info">
                                 <view class="pro-name">{{item.name}}</view>
                                 <view class="pro-sku">{{item.barCode}}</view>
@@ -25,13 +25,15 @@
 </template>
 <script>
     import wepy from 'wepy'
+    import router from '../../mixins/router'
     export default class CategoryBox extends wepy.component {
       props = {
         categoryList: {
           type: Object,
           default: []
         }
-      }
+      };
+      mixins = [router]
     }
 </script>
 <style lang="scss">

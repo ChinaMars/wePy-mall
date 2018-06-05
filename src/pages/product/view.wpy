@@ -1,9 +1,32 @@
 <template>
-    <view>product view</view>
+    <Loading :isLoading.sync="isLoading" />
+    <view class="product-view" wx:if="{{isLoading}}">
+        product view
+    </view>
 </template>
 <script>
     import wepy from 'wepy'
-    export default class ProductView extends wepy.page {}
+    import base from '../../mixins/base'
+    import api from '../../api/api'
+    import Loading from '../../components/common/loading'
+    export default class ProductView extends wepy.page {
+      components = {
+        Loading: Loading
+      };
+      mixins = [base];
+      data = {
+        isLoading: false
+      };
+      async onLoad ({goodsId}) {
+        let proDetail = await api.getProDetail({
+          query: {
+            id: goodsId
+          }
+        })
+        this.loaded()
+        console.log(proDetail)
+      }
+    }
 </script>
 <stye lang="scss">
 </stye>

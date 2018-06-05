@@ -1,8 +1,8 @@
 import wepy from 'wepy'
 
-export default class Base extends wepy.mixin {
+export default class base extends wepy.mixin {
   data = {}
-  method = {}
+  methods = {}
   onLoad() {}
   onShow() {}
   loaded() {

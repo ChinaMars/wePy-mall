@@ -8,12 +8,15 @@ const getAdList = (params) => wxRequest.request(apiMall + '/banner/list', 'POST'
 const getHomeCategoryList = (params) => wxRequest.request(easyMockApi + '/home/category', 'POST', params)
 // 商品分类
 const getCategory = (params) => wxRequest.request(apiMall + '/shop/goods/category/all', 'POST', params)
-// 分类下的商品
+// 指定分类商品
 const getProList = (params) => wxRequest.request(apiMall + '/shop/goods/list', 'GET', params)
+// 商品详情
+const getProDetail = (params) => wxRequest.request(apiMall + '/shop/goods/detail', 'GET', params)
 
 module.exports = {
   getAdList,
   getHomeCategoryList,
   getCategory,
-  getProList
+  getProList,
+  getProDetail
 }
