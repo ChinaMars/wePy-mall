@@ -1,30 +1,60 @@
 <template>
     <Loading :isLoading.sync="isLoading" />
     <view class="product-view" wx:if="{{isLoading}}">
-        product view
+        <!--引入wxParse模板-->
+        <import src="../../plugins/wxParse/wxParse.wxml" />
+        <!--商品展示轮播图-->
+        <SwiperBar :adlist.sync="adlist"/>
+        <!--商品信息-->
+        <view class="pro-info">
+            <view class="name">{{detail.name}}</view>
+            <view class="sku">{{detail.barCode}}</view>
+            <view class="price">{{detail.originalPrice}}</view>
+        </view>
+        <view class="pro-box">
+            <view class="title">选择 颜色款式</view>
+        </view>
+        <view class="pro-des">
+            <view clas="title">商品描述</view>
+            <template is="wxParse" data="{{wxParseData:productDes.nodes}}"></template>
+        </view>
     </view>
 </template>
 <script>
     import wepy from 'wepy'
+    import WxParse from '../../plugins/wxParse/wxParse'
     import base from '../../mixins/base'
     import api from '../../api/api'
     import Loading from '../../components/common/loading'
+    import SwiperBar from '../../components/template/swiper'
     export default class ProductView extends wepy.page {
+      config = {
+        navigationBarTitleText: '商品详情'
+      };
       components = {
-        Loading: Loading
+        Loading: Loading,
+        SwiperBar: SwiperBar
       };
       mixins = [base];
       data = {
-        isLoading: false
+        isLoading: false,
+        adlist: {},
+        detail: {}
       };
       async onLoad ({goodsId}) {
-        let proDetail = await api.getProDetail({
+        let res = await api.getProDetail({
           query: {
             id: goodsId
           }
         })
+        if (res.code === 0) {
+          this.adlist = res.data.pics
+          this.detail = res.data.basicInfo
+          this.productDesInfo = res.data.content
+          WxParse.wxParse('productDes', 'html', this.productDesInfo, this)
+        }
         this.loaded()
-        console.log(proDetail)
+        console.log(this.adlist)
       }
     }
 </script>

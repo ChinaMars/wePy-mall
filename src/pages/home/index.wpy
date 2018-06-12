@@ -30,9 +30,9 @@
     // 初始数据
     data = {
       isLoading: false,
-      adlist: [],
-      categoryList: [],
-      proList: []
+      adlist: {},
+      categoryList: {},
+      proList: {}
     };
     async getAdList() {
       let res = await api.getAdList()
