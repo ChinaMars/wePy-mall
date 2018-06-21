@@ -1,9 +1,9 @@
 <template>
-    <swiper indicator-dots="true" indicator-color="rgba(255, 255, 255, .7)" indicator-active-color="#FFFFFF" autoplay="true" interval="3000" style="height:{{height}}">
+    <swiper indicator-dots="true" indicator-color="rgba(255, 255, 255, .7)" indicator-active-color="#FFFFFF" autoplay="true" interval="3000">
         <block wx:for="{{adlist}}" wx:key="index">
             <swiper-item>
                 <image src="{{item.picUrl}}" class="slide-image" wx:if="{{item.picUrl}}"/>
-                <image src="{{item.pic}}" class="slide-image" wx:else/>
+                <image src="{{item.pic}}" class="slide-image" bindload="autoImage" data-index="{{index}}" wx:else/>
             </swiper-item>
         </block>
     </swiper>
@@ -17,15 +17,16 @@
           default: []
         }
       }
-      data = {
-        height: '540rpx'
-      }
+      data = {}
       methods = {}
     }
 </script>
 <style lang="scss">
-    .slide-image{
-        width: 100%;
-        height: 100%;
+    swiper{
+        height: 540rpx;
+        .slide-image{
+            width: 100%;
+            height: 100%;
+        }
     }
 </style>

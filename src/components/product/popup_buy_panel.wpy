@@ -1,0 +1,16 @@
+<template>
+    <view class="widgets-cover {{isShow ? 'show' : ''}}">购买控制面板</view>
+</template>
+<script>
+    import wepy from 'wepy'
+    export default class PopupBuyPanel extends wepy.component {
+      data = {
+        isShow: false
+      }
+    }
+</script>
+<style lang="scss">
+    .widgets-cover{
+        display: none;
+    }
+</style>

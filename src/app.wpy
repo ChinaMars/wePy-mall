@@ -1,6 +1,4 @@
-<style lang="scss">
-
-</style>
+<style lang="scss" src="./styles/common.scss"></style>
 
 <script>
 import wepy from 'wepy'

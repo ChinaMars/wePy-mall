@@ -1,0 +1,22 @@
+<template>
+    <view class="actionBar-wrap">
+        <view class="actionBar">
+            <view class="add-shop-cart" @tap="openBuyPanel({{goods}})">加入购物车</view>
+        </view>
+    </view>
+</template>
+<script>
+    import wepy from 'wepy'
+    import bindTap from '../../mixins/bindTap'
+    export default class BuyBar extends wepy.component {
+      props = {
+        goods: {
+          type: Object,
+          default: []
+        }
+      }
+      mixins = [bindTap]
+    }
+</script>
+<style lang="scss">
+</style>

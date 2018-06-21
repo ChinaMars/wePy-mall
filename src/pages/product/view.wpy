@@ -1,23 +1,38 @@
 <template>
     <Loading :isLoading.sync="isLoading" />
     <view class="product-view" wx:if="{{isLoading}}">
-        <!--引入wxParse模板-->
-        <import src="../../plugins/wxParse/wxParse.wxml" />
-        <!--商品展示轮播图-->
-        <SwiperBar :adlist.sync="adlist"/>
-        <!--商品信息-->
-        <view class="pro-info">
-            <view class="name">{{detail.name}}</view>
-            <view class="sku">{{detail.barCode}}</view>
-            <view class="price">{{detail.originalPrice}}</view>
+        <view class="product-view-inner">
+            <!--引入wxParse模板-->
+            <import src="../../plugins/wxParse/wxParse.wxml" />
+
+            <view class="group-wrap">
+                <!--商品展示轮播图-->
+                <SwiperBar :adlist.sync="adlist"/>
+                <!--商品信息-->
+                <view class="pro-info module-wrap">
+                    <view class="name"><text>Tissot</text>{{detail.name}}</view>
+                    <view class="sku">{{detail.barCode}}</view>
+                    <view class="price">{{detail.originalPrice}}</view>
+                </view>
+            </view>
+
+            <view class="group-wrap">
+                <view class="pro-box module-wrap">
+                    <view class="title">选择 颜色款式</view>
+                </view>
+            </view>
+
+            <view class="group-wrap">
+                <view class="pro-des">
+                    <view clas="title">商品描述</view>
+                    <template is="wxParse" data="{{wxParseData:productDes.nodes}}"></template>
+                </view>
+            </view>
         </view>
-        <view class="pro-box">
-            <view class="title">选择 颜色款式</view>
-        </view>
-        <view class="pro-des">
-            <view clas="title">商品描述</view>
-            <template is="wxParse" data="{{wxParseData:productDes.nodes}}"></template>
-        </view>
+        <!--底部悬浮栏-->
+        <FixedBar :goods.sync="properties"/>
+        <!--购买面板-->
+        <PopupBuyPanel />
     </view>
 </template>
 <script>
@@ -27,36 +42,75 @@
     import api from '../../api/api'
     import Loading from '../../components/common/loading'
     import SwiperBar from '../../components/template/swiper'
+    import FixedBar from '../../components/product/fixed_bar'
+    import PopupBuyPanel from '../../components/product/popup_buy_panel'
     export default class ProductView extends wepy.page {
       config = {
         navigationBarTitleText: '商品详情'
       };
       components = {
         Loading: Loading,
-        SwiperBar: SwiperBar
+        SwiperBar: SwiperBar,
+        FixedBar: FixedBar,
+        PopupBuyPanel: PopupBuyPanel
       };
       mixins = [base];
       data = {
         isLoading: false,
         adlist: {},
-        detail: {}
+        detail: {},
+        properties: {}
       };
       async onLoad ({goodsId}) {
         let res = await api.getProDetail({
           query: {
-            id: goodsId
+            id: 51224
           }
         })
         if (res.code === 0) {
           this.adlist = res.data.pics
           this.detail = res.data.basicInfo
           this.productDesInfo = res.data.content
+          this.properties = res.data.properties
           WxParse.wxParse('productDes', 'html', this.productDesInfo, this)
         }
         this.loaded()
-        console.log(this.adlist)
       }
     }
 </script>
-<stye lang="scss">
-</stye>
+<style lang="scss">
+    .product-view{
+        background: #f5f5f5;
+        swiper{
+            height: 460px;
+            width: 100%;
+            margin: 0 auto;
+            .slide-image{
+                max-width: 100%;
+                height: 460px;
+            }
+        }
+        .group-wrap{
+            background: #FFF;
+            margin-bottom: 20rpx;
+            .module-wrap{
+                padding: 20rpx;
+            }
+        }
+        .actionBar-wrap{
+            height: 70rpx;
+            .actionBar{
+                position: fixed;
+                bottom: 0;
+                background: #FF0000;
+                text-align: center;
+                width: 100%;
+                color: #FFF;
+                .add-shop-cart{
+                    height: 70rpx;
+                    line-height: 70rpx;
+                }
+            }
+        }
+    }
+</style>
