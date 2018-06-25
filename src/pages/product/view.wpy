@@ -30,8 +30,8 @@
             </view>
         </view>
         <!--底部悬浮栏-->
-        <FixedBar :goods.sync="properties"/>
-        <!--购买面板-->
+        <FixedBar :goodsAttrs.sync="goodsAttrs"/>
+        <!--购买属性面板-->
         <PopupBuyPanel />
     </view>
 </template>
@@ -59,7 +59,7 @@
         isLoading: false,
         adlist: {},
         detail: {},
-        properties: {}
+        goodsAttrs: {}
       };
       async onLoad ({goodsId}) {
         let res = await api.getProDetail({
@@ -67,13 +67,14 @@
             id: 51224
           }
         })
+        let attrList = await api.getProSkuSelect()
         if (res.code === 0) {
           this.adlist = res.data.pics
           this.detail = res.data.basicInfo
           this.productDesInfo = res.data.content
-          this.properties = res.data.properties
           WxParse.wxParse('productDes', 'html', this.productDesInfo, this)
         }
+        this.goodsAttrs = attrList.data
         this.loaded()
       }
     }

@@ -12,11 +12,14 @@ const getCategory = (params) => wxRequest.request(apiMall + '/shop/goods/categor
 const getProList = (params) => wxRequest.request(apiMall + '/shop/goods/list', 'GET', params)
 // 商品详情
 const getProDetail = (params) => wxRequest.request(apiMall + '/shop/goods/detail', 'GET', params)
+// 商品sku属性
+const getProSkuSelect = (params) => wxRequest.request(easyMockApi + '/sku', 'POST', params)
 
 module.exports = {
   getAdList,
   getHomeCategoryList,
   getCategory,
   getProList,
-  getProDetail
+  getProDetail,
+  getProSkuSelect
 }

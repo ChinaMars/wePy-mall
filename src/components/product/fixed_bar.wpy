@@ -1,7 +1,7 @@
 <template>
     <view class="actionBar-wrap">
         <view class="actionBar">
-            <view class="add-shop-cart" @tap="openBuyPanel({{goods}})">加入购物车</view>
+            <view class="add-shop-cart" @tap="openBuyPanel({{goodsAttrs}})">加入购物车</view>
         </view>
     </view>
 </template>
@@ -10,7 +10,7 @@
     import bindTap from '../../mixins/bindTap'
     export default class BuyBar extends wepy.component {
       props = {
-        goods: {
+        goodsAttrs: {
           type: Object,
           default: []
         }

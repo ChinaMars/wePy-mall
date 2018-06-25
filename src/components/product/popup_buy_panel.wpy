@@ -1,11 +1,21 @@
 <template>
-    <view class="widgets-cover {{isShow ? 'show' : ''}}">购买控制面板</view>
+    <view class="widgets-cover {{isShow ? 'show' : ''}}">{{goodsAttrs.infoText}}</view>
 </template>
 <script>
     import wepy from 'wepy'
+    import Event from '../../utils/event'
     export default class PopupBuyPanel extends wepy.component {
       data = {
-        isShow: false
+        isShow: false,
+        goodsAttrs: {}
+      }
+      async onLoad() {
+        Event.listen('goodsPanelOpen', this.panelInfo.bind(this), this)
+      }
+      panelInfo({goodsAttrs}) {
+        this.goodsAttrs = goodsAttrs.skuList
+        this.isShow = true
+        this.$apply()
       }
     }
 </script>
