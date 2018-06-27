@@ -8,7 +8,7 @@ export default class bindTap extends wepy.mixin {
     },
     /* 打开购物面板 */
     openBuyPanel(goodsAttrs) {
-      Event.emit('goodsPanelOpen', {goodsAttrs})
+      Event.emit('goodsPanelOpen', goodsAttrs)
     }
   }
 }

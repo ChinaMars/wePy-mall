@@ -18,7 +18,7 @@
 
             <view class="group-wrap">
                 <view class="pro-box module-wrap">
-                    <view class="title">选择 颜色款式</view>
+                    <view class="title" @tap="openBuyPanel({{goodsAttrs}})">选择 颜色款式</view>
                 </view>
             </view>
 
@@ -37,6 +37,7 @@
 </template>
 <script>
     import wepy from 'wepy'
+    import bindTap from '../../mixins/bindTap'
     import WxParse from '../../plugins/wxParse/wxParse'
     import base from '../../mixins/base'
     import api from '../../api/api'
@@ -54,7 +55,7 @@
         FixedBar: FixedBar,
         PopupBuyPanel: PopupBuyPanel
       };
-      mixins = [base];
+      mixins = [base, bindTap];
       data = {
         isLoading: false,
         adlist: {},
@@ -74,7 +75,7 @@
           this.productDesInfo = res.data.content
           WxParse.wxParse('productDes', 'html', this.productDesInfo, this)
         }
-        this.goodsAttrs = attrList.data
+        this.goodsAttrs = attrList.data.skuList
         this.loaded()
       }
     }

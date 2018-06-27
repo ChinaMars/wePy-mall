@@ -3,7 +3,7 @@
         <block wx:for="{{adlist}}" wx:key="index">
             <swiper-item>
                 <image src="{{item.picUrl}}" class="slide-image" wx:if="{{item.picUrl}}"/>
-                <image src="{{item.pic}}" class="slide-image" bindload="autoImage" data-index="{{index}}" wx:else/>
+                <image src="{{item.pic}}" class="slide-image" data-index="{{index}}" wx:else/>
             </swiper-item>
         </block>
     </swiper>
