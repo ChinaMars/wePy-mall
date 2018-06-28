@@ -18,6 +18,8 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.5",
+    "lodash.includes": "^4.3.0",
+    "lodash.uniq": "^4.5.0",
     "node-sass": "^4.9.0",
     "promise-polyfill": "^7.1.2",
     "redux": "^3.7.2",
