@@ -17,12 +17,11 @@ export default class Sku {
   init() {
     /* 商品规格类型数据 */
     this.attrList = this.goodsAttrs.attrList
-    this.checkSku()
-    console.log(this.checkSku())
+    this.checkEnable()
   }
 
   /**
-   * 获取每个sku类型ID
+   * 获取每个sku ID
    */
   skuAttrId() {
     let attrList = this.attrList
@@ -35,9 +34,23 @@ export default class Sku {
   }
 
   /**
-   * 检测组合商品对应的sku类型ID
+   * 通过组合商品sku ID检测所有sku判断enable true or false
    */
-  checkSku() {
+  checkEnable() {
+    let attrList = this.attrList
+    for (let i in attrList) {
+      let attrs = attrList[i].attr
+      for (let i in attrs) {
+        this.checkSkuBean()
+        attrs[i].enable = include(this.checkSkuBean(), attrs[i].id)
+      }
+    }
+  }
+
+  /**
+   * 检测所有组合商品对应的sku ID
+   */
+  checkSkuBean() {
     /* 组合商品数据 */
     this.skuBeanList = this.goodsAttrs.skuBeanList
     this.enabledIds = []
