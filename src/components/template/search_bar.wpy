@@ -1,0 +1,33 @@
+<template>
+    <view class="search">
+        <view class="input" @tap="search()"><text>请您输入要搜索的内容</text></view>
+    </view>
+</template>
+<script>
+    import wepy from 'wepy'
+    import api from '../../api/api'
+    import bindTap from '../../mixins/bindTap'
+    export default class SearchBar extends wepy.component {
+      data = {}
+      mixins = [bindTap]
+      methods = {
+        async search() {
+          let res = await api.getAdList()
+          console.log(res)
+          this.$parent.$navigate(`/pages/search/search`)
+        }
+      }
+    }
+</script>
+<style lang="scss">
+    .search{
+        background: #e4161d;
+        padding: 20rpx;
+        .input{
+            border: 1px solid #FFF;
+            background: #FFF;
+            padding: 10rpx;
+            font-size: 26rpx;
+        }
+    }
+</style>

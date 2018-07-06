@@ -48,6 +48,7 @@
           this.isShow = false
         },
         select(event) {
+          console.log(event)
           this.skuManager.select(event)
         }
       }

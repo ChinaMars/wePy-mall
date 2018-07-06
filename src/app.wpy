@@ -1,5 +1,5 @@
 <style lang="scss" src="./styles/common.scss"></style>
-
+<style lang="scss" src="./plugins/wxParse/wxParse.wxss"></style>
 <script>
 import wepy from 'wepy'
 import 'wepy-async-function'
@@ -15,13 +15,14 @@ export default class extends wepy.app {
     pages: [
       // 'pages/index',
       'pages/home/index',
-      'pages/product/view'
+      'pages/product/view',
+      'pages/search/search'
     ],
     window: {
       backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
+      navigationBarBackgroundColor: '#e4161d',
       navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      navigationBarTextStyle: 'white'
     },
     'tabBar': {
       'color': '#666666',
