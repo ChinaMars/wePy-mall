@@ -21,7 +21,7 @@
       methods = {}
     }
 </script>
-<style lang="scss">
+<style lang="scss" type="text/scss">
     swiper{
         height: 540rpx;
         .slide-image{

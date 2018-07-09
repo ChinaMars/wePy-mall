@@ -36,7 +36,7 @@
       mixins = [bindTap]
     }
 </script>
-<style lang="scss">
+<style lang="scss" type="text/scss">
     .category-box{
         .img-box{
             image{

@@ -62,7 +62,7 @@
       }
     }
 </script>
-<style lang="scss">
+<style lang="scss" type="text/scss">
     .widgets-cover{
         opacity: 0;
         position: fixed;

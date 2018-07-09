@@ -1,5 +1,7 @@
-<style lang="scss" src="./styles/common.scss"></style>
-<style lang="scss" src="./plugins/wxParse/wxParse.wxss"></style>
+<style lang="scss" type="text/scss">
+    @import "./styles/common.scss";
+    @import "./plugins/wxParse/wxParse.wxss";
+</style>
 <script>
 import wepy from 'wepy'
 import 'wepy-async-function'

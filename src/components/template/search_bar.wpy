@@ -19,7 +19,7 @@
       }
     }
 </script>
-<style lang="scss">
+<style lang="scss" type="text/scss">
     .search{
         background: #e4161d;
         padding: 20rpx;

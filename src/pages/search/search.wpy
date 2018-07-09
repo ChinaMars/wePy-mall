@@ -1,29 +1,4 @@
-<template>
-    <view class="weui-search-bar">
-        <view class="weui-search-bar__form">
-            <view class="weui-search-bar__box">
-                <icon class="weui-icon-search" type="search" size="16">搜索</icon>
-                <input type="text" class="weui-search-bar__input" placeholder="请输入查询内容" />
-                <view class="weui-icon-clear">
-                    <icon type="clear" size="16">clear</icon>
-                </view>
-            </view>
-            <view class="weui-search-btn"><text>搜索</text></view>
-        </view>
-    </view>
-</template>
-<script>
-    import wepy from 'wepy'
-    export default class Search extends wepy.page {
-      config = {
-        'navigationBarTitleText': '搜索'
-      }
-      data = {}
-      onLoad() {}
-      method = {}
-    }
-</script>
-<style lang="scss">
+<style lang="scss" type="text/scss">
     .weui-search-bar{
         padding: 20rpx;
         .weui-search-bar__form{
@@ -53,3 +28,37 @@
         }
     }
 </style>
+
+<template>
+    <view class="weui-search-bar">
+        <view class="weui-search-bar__form">
+            <view class="weui-search-bar__box">
+                <icon class="weui-icon-search" type="search" size="16">搜索</icon>
+                <input type="text" class="weui-search-bar__input" placeholder="请输入查询内容" />
+                <view class="weui-icon-clear">
+                    <icon type="clear" size="16">clear</icon>
+                </view>
+            </view>
+            <view class="weui-search-btn"><text>搜索</text></view>
+        </view>
+    </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Search extends wepy.page {
+    config = {
+      'navigationBarTitleText': '搜索'
+    }
+    components = {}
+    props = {}
+    data = {}
+    methods = {}
+    events = {}
+
+    onLoad () {
+
+    }
+  }
+</script>

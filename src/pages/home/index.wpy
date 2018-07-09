@@ -85,7 +85,8 @@
     }
   }
 </script>
-<style lang="scss">
+<style lang="scss" type="text/scss">
+  @import "../../plugins/hSwiper/hSwiper.wxss";
   /*滚动图*/
   .hSwiper-wrap{
     height: 540rpx;
@@ -103,5 +104,4 @@
       height: 540rpx;
     }
   }
-  @import "../../plugins/hSwiper/hSwiper.wxss";
 </style>
