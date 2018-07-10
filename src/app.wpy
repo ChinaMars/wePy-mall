@@ -17,6 +17,7 @@ export default class extends wepy.app {
     pages: [
       // 'pages/index',
       'pages/home/index',
+      'pages/product/category',
       'pages/product/view',
       'pages/search/search'
     ],
@@ -39,8 +40,8 @@ export default class extends wepy.app {
       }, {
         'iconPath': 'images/tabbar/money.png',
         'selectedIconPath': 'images/tabbar/money-active.png',
-        'pagePath': 'pages/home/index',
-        'text': '中奖列表'
+        'pagePath': 'pages/product/category',
+        'text': '分类'
       }, {
         'iconPath': 'images/tabbar/account.png',
         'selectedIconPath': 'images/tabbar/account-active.png',

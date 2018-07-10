@@ -5,16 +5,20 @@
 </template>
 <script>
     import wepy from 'wepy'
-    import api from '../../api/api'
     import bindTap from '../../mixins/bindTap'
     export default class SearchBar extends wepy.component {
+      props = {
+        search: {
+          type: Object,
+          default: []
+        }
+      }
       data = {}
       mixins = [bindTap]
       methods = {
         async search() {
-          let res = await api.getAdList()
-          console.log(res)
-          this.$parent.$navigate(`/pages/search/search`)
+          let param = this.search
+          this.$parent.$navigate(`/pages/search/search?param=${param}`)
         }
       }
     }

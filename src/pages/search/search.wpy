@@ -1,11 +1,72 @@
+<template>
+    <view class="search-wrap" wx:if="{{isLoading}}">
+        <view class="search-bar">
+            <view class="search-bar__form">
+                <view class="search-bar__box">
+                    <icon class="icon-search" type="search" size="16">搜索</icon>
+                    <input type="text" class="search-bar__input" placeholder="请输入查询内容" />
+                    <view class="icon-clear">
+                        <icon type="clear" size="16">clear</icon>
+                    </view>
+                </view>
+                <view class="search-btn"><text>搜索</text></view>
+            </view>
+        </view>
+        <view class="search-content">
+            <!--热门搜索-->
+            <view class="hot-search" wx:if="searchData.hotKeyWords && searchData.hotKeyWords.length > 0">
+                <view>热门搜索</view>
+                <block wx:for="{{searchData.hotKeyWords}}" wx:key="*this">
+                    <view class="item">{{item.name}}</view>
+                </block>
+            </view>
+            <!--历史搜索-->
+            <view class="history-search">历史搜索</view>
+        </view>
+    </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  import base from '../../mixins/base'
+  import Seach from '../../utils/search'
+  export default class Search extends wepy.page {
+    searchManager = null
+    config = {
+      'navigationBarTitleText': '搜索'
+    }
+    components = {}
+    props = {}
+    data = {
+      isLoading: false
+    }
+    computed = {
+      searchData() {
+        if (this.searchManager == null) return
+        return this.searchManager.export()
+      }
+    }
+    methods = {}
+    events = {}
+    mixins = [base]
+    onLoad ({param}) {
+      let params = JSON.parse(param)
+      let hotKeyWords = params.hotsearch
+      this.searchManager = new Seach(hotKeyWords)
+      this.searchManager.init()
+      this.loaded()
+    }
+  }
+</script>
 <style lang="scss" type="text/scss">
-    .weui-search-bar{
+    .search-wrap{
         padding: 20rpx;
-        .weui-search-bar__form{
+    }
+    .search-bar{
+        .search-bar__form{
             display: flex;
             flex-direction: row;
             align-items: center;
-            .weui-search-bar__box{
+            .search-bar__box{
                 flex: auto;
                 position: relative;
                 background: #e8e3e3;
@@ -13,52 +74,18 @@
                 padding: 15rpx;
                 border-radius: 10rpx;
                 align-items: center;
-                .weui-search-bar__input{
+                .search-bar__input{
                     width: 80%;
                     margin-left: 10rpx;
                 }
-                .weui-icon-clear{
+                .icon-clear{
                     position: absolute;
                     right: 20rpx;
                 }
             }
-            .weui-search-btn{
+            .search-btn{
                 margin-left: 20rpx;
             }
         }
     }
 </style>
-
-<template>
-    <view class="weui-search-bar">
-        <view class="weui-search-bar__form">
-            <view class="weui-search-bar__box">
-                <icon class="weui-icon-search" type="search" size="16">搜索</icon>
-                <input type="text" class="weui-search-bar__input" placeholder="请输入查询内容" />
-                <view class="weui-icon-clear">
-                    <icon type="clear" size="16">clear</icon>
-                </view>
-            </view>
-            <view class="weui-search-btn"><text>搜索</text></view>
-        </view>
-    </view>
-</template>
-
-<script>
-  import wepy from 'wepy'
-
-  export default class Search extends wepy.page {
-    config = {
-      'navigationBarTitleText': '搜索'
-    }
-    components = {}
-    props = {}
-    data = {}
-    methods = {}
-    events = {}
-
-    onLoad () {
-
-    }
-  }
-</script>

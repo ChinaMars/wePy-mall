@@ -40,6 +40,7 @@
       computed = {
         skuData() {
           if (this.skuManager == null) return
+          console.log(this.skuManager.export())
           return this.skuManager.export()
         }
       }

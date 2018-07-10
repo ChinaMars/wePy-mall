@@ -2,7 +2,7 @@
   <Loading :isLoading.sync="isLoading" />
   <view class="container" wx:if="{{isLoading}}">
     <!--搜索框-->
-    <SearchBar />
+    <SearchBar :search.sync="search"/>
     <!--轮播图-->
     <import src="../../plugins/hSwiper/hSwiper.wxml"/>
     <view class="hSwiper-wrap"><template is="HSwiper" data="{{...hSwiperVar}}"></template></view>
@@ -37,16 +37,16 @@
     // 初始数据
     data = {
       isLoading: false,
+      search: null,
       adlist: [],
       categoryList: {},
       proList: {},
       hSwiperVar: {}
     };
     async onLoad() {
+      await this.getSearch()
       await this.getAdList()
       await this.getHomeCategoryList()
-      // await this.getCategory()
-      // await this.getProList()
       this.loaded()
       this.swiperInit()
     }
@@ -71,17 +71,9 @@
         this.categoryList = res.data
       }
     }
-    async getCategory() {
-      let res = await api.getCategory()
-      if (res.code === 0) {
-        this.categoryList = res.data
-      }
-    }
-    async getProList() {
-      let res = await api.getProList()
-      if (res.code === 0) {
-        this.proList = res.data
-      }
+    async getSearch() {
+      let res = await api.getSearch()
+      this.search = JSON.stringify(res.data.search)
     }
   }
 </script>

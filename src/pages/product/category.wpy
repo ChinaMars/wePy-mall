@@ -1,0 +1,21 @@
+<template>
+    <view>所有分类展示</view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class Category extends wepy.page {
+    config = {
+      'navigationBarTitleText': '分类'
+    }
+    components = {}
+    props = {}
+    data = {}
+    methods = {}
+    events = {}
+    onLoad () {}
+  }
+</script>
+<style lang="scss" type="text/scss">
+
+</style>
