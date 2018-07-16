@@ -17,6 +17,10 @@
   "author": "Mars",
   "license": "MIT",
   "dependencies": {
+    "@minui/wxc-button": "^1.0.2",
+    "@minui/wxc-input": "^1.0.2",
+    "@minui/wxc-toast": "^1.0.9",
+    "babel-plugin-syntax-export-extensions": "^6.13.0",
     "lodash": "^4.17.5",
     "lodash.includes": "^4.3.0",
     "lodash.uniq": "^4.5.0",
@@ -36,10 +40,10 @@
   "devDependencies": {
     "babel-eslint": "^7.2.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "babel-plugin-transform-export-extensions": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "cross-env": "^5.1.3",
     "eslint": "^3.18.0",
     "eslint-config-standard": "^7.1.0",

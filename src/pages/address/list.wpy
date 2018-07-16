@@ -1,0 +1,26 @@
+<style lang="less" type="text/less">
+
+</style>
+
+<template>
+    <view>地址列表</view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class List extends wepy.page {
+    config = {
+      'navigationBarTitleText': '选择收货地址'
+    }
+    components = {}
+    props = {}
+    data = {}
+    methods = {}
+    events = {}
+
+    onLoad () {
+
+    }
+  }
+</script>

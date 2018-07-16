@@ -1,0 +1,83 @@
+<style lang="less" type="text/less">
+
+</style>
+
+<template>
+    <view class="address-from">
+        <form @submit="conform">
+            <view class="container">
+                <view class="input-wrap">
+                    <wxc-input type="text" title="收货人" placeholder="名字" data-type="name" value=""></wxc-input>
+                    <wxc-input type="number" title="联系电话" placeholder="请输入手机号" data-type="mobile" value=""></wxc-input>
+                    <wxc-input type="text" title="详细地址" mode="none" placeholder="请输入详细地址" value=""></wxc-input>
+                    <view class="input-item">
+                        <view class="title">所在地区:</view>
+                        <view class="input">
+                            <view @tap="openAddressPicker">{{province ? province.name : '省'}} - {{city ? city.name : '市' }} - {{area ? area.name : '区' }}</view>
+                            <areaPicker @areaArray.user="areaPickerArray"></areaPicker>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="btn-panel">
+                <button class="btn" type="primary" form-type="submit">确定</button>
+            </view>
+        </form>
+        <wxc-toast
+                class="J_toast"
+                text="Hello World"></wxc-toast>
+        <button bindtap="showToast">调用 show() 方法显示</button>
+    </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import AreaPicker from '../../components/common/wepy-area-picker'
+
+  export default class Add extends wepy.page {
+    config = {
+      'navigationBarTitleText': '新增地址',
+      usingComponents: {
+        'wxc-toast': '../../packages/@minui/wxc-toast/dist/index'
+      }
+    }
+    components = {
+      areaPicker: AreaPicker
+    }
+    props = {}
+    data = {
+      province: '',
+      city: '',
+      area: '',
+      provinceCode: '',
+      cityCode: '',
+      areaCode: ''
+    }
+    methods = {
+      openAddressPicker() {
+        this.$invoke('areaPicker', 'openAddressPicker')
+      },
+      areaPickerArray(province, city, area) {
+        this.province = province
+        this.city = city
+        this.area = area
+        this.provinceCode = province.code
+        this.cityCode = city.code
+        this.areaCode = area.code
+        this.$apply()
+      },
+      async conform(e) {
+        console.log(e)
+      },
+      showToast() {
+        let $toast = this.$wxpage.selectComponent('.J_toast')
+        $toast && $toast.show()
+      }
+    }
+    events = {}
+
+    onLoad () {
+
+    }
+  }
+</script>

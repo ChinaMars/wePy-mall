@@ -1,0 +1,50 @@
+<style lang="less" type="text/less">
+
+</style>
+
+<template>
+    <button open-type="getUserInfo">确认授权</button>
+    <view class="address-info" @tap="routeToShippAddr()"  wx:if="{{address.length > 0}}">{{address}}</view>
+    <view class="address-list">
+        <view @tap="routeToAddAddress()" class="yourself-add">手动填加</view>
+        <view @tap="chooseAddress()" class="wx-add">微信填加</view>
+    </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import bindTap from '../../mixins/bindTap'
+
+  export default class Billing extends wepy.page {
+    config = {
+      'navigationBarTitleText': '结算'
+    }
+    components = {}
+    props = {}
+    data = {
+      address: null
+    }
+    mixins = [bindTap]
+    methods = {
+      async chooseAddress () {
+        let res = await wepy.chooseAddress()
+        this.address = res.cityName + res.userName
+        wepy.setStorageSync('ADDRESS', this.address)
+        console.log(res)
+      }
+    }
+    events = {}
+
+    async onLoad () {
+      let res = await wepy.getSetting()
+      if ((res.authSetting)['scope.userInfo']) {
+        let addressInfo = wepy.getStorageSync('ADDRESS')
+        if (addressInfo) {
+          this.address = addressInfo
+          this.$apply()
+        }
+      }
+      console.log((res.authSetting)['scope.userInfo'])
+    }
+  }
+</script>
